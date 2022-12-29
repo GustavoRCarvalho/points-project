@@ -11,7 +11,7 @@ function App() {
     const newCircle = {
         X: props.clientX,
         Y: props.clientY,
-        key: props.clientX * props.clientY
+        key: props.clientX * props.clientY * Math.random()
       }
     const isUniqueKey = circles.findIndex(({key}) => newCircle.key === key) === -1
 
