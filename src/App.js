@@ -11,7 +11,7 @@ function App() {
     const newCircle = {
         X: props.clientX,
         Y: props.clientY,
-        key: props.clientX * props.clientY * Math.random()
+        key: `X:${props.clientX}, Y:${props.clientY}`
       }
     const isUniqueKey = circles.findIndex(({key}) => newCircle.key === key) === -1
 
@@ -22,11 +22,11 @@ function App() {
   }
 
   return (
-    <div onClick={onClickApp} id="App">
+    <main onClick={onClickApp} id="App">
       <Button title="Undo" listToPop={circles} setListToPop={setCircles} setListToAdd={setCirclesTrash}/>
       <Button title="Redo" listToPop={circlesTrash} setListToPop={setCirclesTrash} setListToAdd={setCircles}/>
       <Circle circles={circles}/>
-    </div>
+    </main>
   );
 }
 

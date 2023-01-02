@@ -4,7 +4,9 @@ export function Circle({circles}) {
 
     return circles.map((circle) => {
             return (
-                <div className="Circle"
+                <div
+                    data-testid="circle"
+                    className="Circle"
                     key={circle.key}
                     style={{
                         top: circle.Y+"px",
