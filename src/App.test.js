@@ -1,4 +1,4 @@
-import { createEvent, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 
 test('click in screen and verify if a component of circle has been create in the position', () => {
@@ -43,3 +43,24 @@ test('click two times in same position and expect to have only one component of 
 
   expect(point.length === 1)
 });
+
+test('click on undo button and expect to remove one circle, then click in redo button and expect to replace the circle', () => {
+  render(<App />)
+  const [X, Y] = [100, 100]
+  const display = screen.getByRole('main')
+
+  fireEvent.click(display, {clientX: X, clientY: Y})
+
+  const point = screen.getAllByTestId('circle')
+  expect(point.length === 1)
+
+  const buttonUndo = screen.getByRole('button', {name: "Undo"})
+
+  fireEvent.click(buttonUndo)
+  expect(point.length === 0)
+
+  const buttonRedo = screen.getByRole('button', {name: "Redo"})
+
+  fireEvent.click(buttonRedo)
+  expect(point.length === 1)
+})

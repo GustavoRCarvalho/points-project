@@ -2,7 +2,9 @@ import './Button.css'
 
 export function Button(props) {
 
-    function popCirclesList({listToPop, setListToPop, setListToAdd}) {
+    function handlePopCirclesList() {
+        const {listToPop, setListToPop, setListToAdd} =  props
+
         if (listToPop.length) {
           const popItem = listToPop[listToPop.length - 1]
           setListToPop((list) => {
@@ -12,9 +14,8 @@ export function Button(props) {
           setListToAdd((list) => [...list, popItem])
         }
       }
-
     return (
-        <button onClick={() => popCirclesList({listToPop: props.listToPop, setListToPop: props.setListToPop, setListToAdd: props.setListToAdd})}>
+        <button onClick={handlePopCirclesList}>
             {props.title}
         </button>
     )
